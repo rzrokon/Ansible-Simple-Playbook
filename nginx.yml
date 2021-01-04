@@ -1,0 +1,28 @@
+---
+- name: Play in local server
+  hosts: local
+  connection: local
+  gather_facts: false
+  # become: true
+  tasks:
+    - name: Stop Nginx Service
+      command: sudo service nginx stop
+
+- name: Play in Production Server
+  hosts: prod
+  remote_user: ubuntu
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install Nginx Service
+      command: apt install nginx -y
+  
+    - name: Start Nginx Service
+      command: service nginx start
+
+
+
+
+
+
+
